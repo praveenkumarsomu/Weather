@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CityListViewBusinessLogic {
-	func getCityList() async
+	func getCityList(_ request: CityListModel.Request) async
 }
 
 /// This file contains all the business logic related to City list
@@ -22,9 +22,10 @@ class CityListInteractor: CityListViewBusinessLogic {
 		self.cityListWorker = worker
 	}
 	/// Get city from the worker and pass back status to presenter.
-	func getCityList() async {
+	/// - Parameter request: Request is astructure that contains information to fetch city list from API, as of now it is empty struct but in future if we want to add more functionality it is used. Example for additional functionality is sorting or filtering inputs from user.
+	func getCityList(_ request: CityListModel.Request) async {
 		do {
-			let cityListData = try cityListWorker.citiesStore.fetchCityList()
+			let cityListData = try cityListWorker.fetchCityList()
 			let cityList = try JSONDecoder().decode(CityListModel.Response.self, from: cityListData)
 			presenter.presentCityList(.success(cityList))
 		} catch {

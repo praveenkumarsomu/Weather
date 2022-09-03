@@ -29,10 +29,11 @@ class CityListViewController: UIViewController {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		configure()
 		configureUI()
 		Task.detached { [weak self] in
-			await self?.interactor?.getCityList()
+			/// In future if we need to pass any additional data to interactor to get city list should be added as a variables inside Request.
+			let request = CityListModel.Request()
+			await self?.interactor?.getCityList(request)
 		}
 	}
 	/// This function initialises and resolves the mapping between View controller -> Interactor -> Presenter
