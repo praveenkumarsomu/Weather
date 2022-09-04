@@ -39,7 +39,9 @@ class ContactUsViewController: UIViewController {
     }
 	/// This function initialises and resolves the mapping between View controller -> Interactor -> Presenter
 	private func configure() {
-		let interactor = ContactUsInteractor()
+		let contactUsStore = ContactUsLocalAPI()
+		let worker = ContactUsWorker(store: contactUsStore)
+		let interactor = ContactUsInteractor(worker)
 		let presenter = ContactUsPresenter()
 		self.interactor = interactor
 		interactor.presenter = presenter
@@ -61,7 +63,6 @@ class ContactUsViewController: UIViewController {
 		let nameModel = ContactUsModel.ViewModel.UserInterfaceModel(hint: constants.name, errorMessage: constants.invalidName, cellType: .textField, contentType: .name)
 		let mobileNumberModel = ContactUsModel.ViewModel.UserInterfaceModel(hint: constants.mobileNumber, errorMessage: constants.invalidMobileNumber, cellType: .textField, contentType: .mobile)
 		let emailModel = ContactUsModel.ViewModel.UserInterfaceModel(hint: constants.email, errorMessage: constants.invalidEmail, cellType: .textField, contentType: .email)
-		let submitButtonModel = ContactUsModel.ViewModel.UserInterfaceModel(hint: constants.submit, cellType: .button, contentType: .none)
 		let displayedUserInterfaceModel = [nameModel, emailModel, mobileNumberModel]
 		displayedCells = displayedUserInterfaceModel
 	}
@@ -78,7 +79,6 @@ class ContactUsViewController: UIViewController {
 			isValidInput = interactor.isValidMobileNumber(input)
 		case .name:
 			isValidInput = interactor.isValidName(input)
-		case .none: break
 		}
 		updateViewModelErrorMessage(contentType, !isValidInput, input)
 		interactor.checkForSubmitButtonState(displayedCells)
@@ -99,7 +99,6 @@ class ContactUsViewController: UIViewController {
 			updatedModel = ContactUsModel.ViewModel.UserInterfaceModel(hint: constants.name, errorMessage: constants.invalidName, cellType: .textField, contentType: .name, displayError: displayError, input: input)
 		case .mobile:
 			updatedModel = ContactUsModel.ViewModel.UserInterfaceModel(hint: constants.mobileNumber, errorMessage: constants.invalidMobileNumber, cellType: .textField, contentType: .mobile, displayError: displayError, input: input)
-		case .none: break
 		}
 		guard let updatedModel = updatedModel else {
 			return
@@ -136,15 +135,6 @@ extension ContactUsViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let model = displayedCells[safe: indexPath.row] else { return UITableViewCell() }
 		switch model.cellType {
-		case .button:
-			guard let buttonCell = tableView.dequeueReusableCell(withIdentifier: constants.contactUsButtonCell) as? ContactUsButtonTableViewCell else {
-				return UITableViewCell()
-			}
-			buttonCell.submitButtonAction = {
-				
-			}
-			buttonCell.selectionStyle = .none
-			return buttonCell
 		case .textField:
 			guard let textFieldCell = tableView.dequeueReusableCell(withIdentifier: constants.contactUsTextFieldCell) as? ContactUsInputTableViewCell else {
 				return UITableViewCell()

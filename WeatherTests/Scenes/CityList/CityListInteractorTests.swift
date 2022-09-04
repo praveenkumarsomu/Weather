@@ -34,13 +34,13 @@ class CityListMockPresenter: CityListPresentationLogic {
 }
 class CityListMockWorker: CityListWorker {
 	var fetchCitiesCalled: Bool = false
-	override func fetchCityList() throws -> Data {
+	override func fetchCityList() async throws -> Data {
 		fetchCitiesCalled = true
-		return try citiesStore.fetchCityList()
+		return try await citiesStore.fetchCityList()
 	}
 }
 
-class MockCityListAPI: CityListStoreProtocol {
+class MockCityListAPI: WeatherStoreProtocol {
 	func fetchCityList() throws -> Data {
 		let staticData = """
 {
@@ -69,7 +69,7 @@ class MockCityListAPI: CityListStoreProtocol {
 		}
 """
 		guard let data = staticData.data(using: .utf8) else {
-			throw CityStaticListAPI.DataError.fileNotFound
+			throw WeatherLocalAPI.WeatherAPIError.fileNotFound
 		}
 		return data
 	}

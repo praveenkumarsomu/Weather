@@ -20,7 +20,7 @@ enum ContactUsModel {
 	}
 	struct ViewModel {
 		/// This viewmodel is used to populate UI on ContactUsTableViewController's table view data
-		struct UserInterfaceModel {
+		struct UserInterfaceModel: Equatable {
 			/// In case of Text field hint is displayed as place holder and for Button it is displayed as title
 			let hint: String
 			/// Error message is optional in case if user enter's invalid input we show this message to user to correct input.
@@ -36,16 +36,14 @@ enum ContactUsModel {
 		}
 		enum CellType {
 			case textField
-			case button
 		}
 		enum ContentType {
 			case email
 			case mobile
 			case name
-			case none
 		}
 		/// This viewmodel is used to display alert message on `ContactUsTableViewController` after API call completion
-		struct DataModel {
+		struct DataModel: Equatable {
 			let message: String
 		}
 	}

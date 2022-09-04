@@ -18,7 +18,7 @@ class CityListInteractor: CityListViewBusinessLogic {
 	var presenter: CityListPresentationLogic!
 	/// Worker file to execute API to get list of cities, as of now it loads data from the local json file from the bundle. We can easily replace this with API call with new implementation of the protocol `CityListWorker` no extra changes required in any of the other files.
 	var cityListWorker: CityListWorker
-	init (worker: CityListWorker = CityListWorker(citiesStore: WeatherAPIMock())) {
+	init (worker: CityListWorker = CityListWorker(citiesStore: WeatherLocalAPI())) {
 		self.cityListWorker = worker
 	}
 	/// Get city from the worker and pass back status to presenter.

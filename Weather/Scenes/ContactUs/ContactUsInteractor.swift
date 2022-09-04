@@ -25,33 +25,34 @@ extension ContactUsBusinessLogic {
 		return emailPred.evaluate(with: email)
 	}
 	/// Checks whether the user entered mobile is valid or not.
-	/// Phone number omits the country code for validation as of now text field only allows numbers, it should be more than 6 digits.
+	/// Phone number omits the country code for validation as of now text field only allows numbers, it should be more than 6 digits and less or equal to 11 digits. These maximum and minimum number limit is assigned by me can be changed with real values in future.
 	/// - Parameter email: input mobile number that needs to be validated.
 	/// - Returns: returns Bool value as result.
 	func isValidMobileNumber(_ mobile: String) -> Bool {
-		let letterCharacters = CharacterSet.decimalDigits
-		let lettersRange = mobile.rangeOfCharacter(from: letterCharacters)
-		return lettersRange != nil && mobile.count > 6
+		let mobileNumberRegex = "[0-9]{7,11}"
+		let mobilePredicate = NSPredicate(format:"SELF MATCHES %@", mobileNumberRegex)
+		return mobilePredicate.evaluate(with: mobile)
 	}
 	/// Checks whether the user entered name is valid or not.
 	/// Name should contain only alphabets and it should be atleast 4 chnaracters
 	/// - Parameter email: input user name that needs to be validated.
 	/// - Returns: returns Bool value as result.
 	func isValidName(_ name: String) -> Bool {
-		let decimalCharacters = CharacterSet.letters
-		let decimalRange = name.rangeOfCharacter(from: decimalCharacters)
-		return decimalRange != nil && name.count >= 4
+		let nameRegex = "[a-zA-Z_ ]{4,}"
+		let namePredicate = NSPredicate(format:"SELF MATCHES %@", nameRegex)
+		return namePredicate.evaluate(with: name)
 	}
 }
 class ContactUsInteractor: ContactUsBusinessLogic {
 	/// Presenter protocol, this value is assigned inside `ContactUsTableViewController` `configure` function.
 	var presenter: ContactUsPresentationLogic!
 	/// Worker class to call submit user details through API, As of now no real API call is implemented.
-	var worker: ContactUsWorker!
+	var worker: ContactUsWorker
+	init(_ worker: ContactUsWorker) {
+		self.worker = worker
+	}
 	func submitUserDetails(_ request: ContactUsModel.Request) async throws {
 		// TODO: In future we can implement actual API call here for now just return mock result.
-		let contactUsStore = ContactUsMockAPI()
-		let worker = ContactUsWorker(store: contactUsStore)
 		guard let data = try? await worker.submitContactUsDetails(request), let message = String(data: data, encoding: .utf8) else {
 			return 	presenter.presentContactUsResult(.failure(.apiFailure))
 		}
@@ -71,7 +72,6 @@ class ContactUsInteractor: ContactUsBusinessLogic {
 				mobileVerificationResult = isValidMobileNumber(keyboardInput)
 			case .name:
 				nameVerificationResult = isValidName(keyboardInput)
-			case .none: break
 			}
 		}
 		let isValidData = emailVerificationResult && nameVerificationResult && mobileVerificationResult
