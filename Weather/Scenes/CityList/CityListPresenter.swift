@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CityListPresentationLogic {
-	func presentCityList(_ result: Result<CityListModel.Response, CityListModel.CityListError>)
+	func presentCityList(_ result: Result<CityListModel.Response, WeatherAPIError>)
 }
 extension CityListPresentationLogic {
 	func convertResponseIntoViewModel(_ response: CityListModel.Response) -> CityListModel.ViewModel {
@@ -23,7 +23,7 @@ class CityListPresenter: CityListPresentationLogic {
 	weak var view: CityListDisplayLogic!
 	/// Receive data from the interactor `CityListInteractor` and processes the data and passbacks the view model to `CityListViewController`.
 	/// - Parameter result: API result from interactor.
-	func presentCityList(_ result: Result<CityListModel.Response, CityListModel.CityListError>) {
+	func presentCityList(_ result: Result<CityListModel.Response, WeatherAPIError>) {
 		DispatchQueue.main.async { [weak self] in
 			guard let self =  self else { return }
 			switch result {

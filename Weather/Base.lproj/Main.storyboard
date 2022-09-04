@@ -185,6 +185,46 @@
             </objects>
             <point key="canvasLocation" x="1373.913043478261" y="122.54464285714285"/>
         </scene>
+        <!--Weather Details View Controller-->
+        <scene sceneID="kNe-CK-jo0">
+            <objects>
+                <viewController storyboardIdentifier="WeatherDetailsViewController" id="sHe-kE-f8z" customClass="WeatherDetailsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fso-iD-J50">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fAR-2W-h8V">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sHe-kE-f8z" id="GdZ-qg-IGf"/>
+                                    <outlet property="delegate" destination="sHe-kE-f8z" id="sUd-LD-sNm"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nas-bj-mPL">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HbC-CV-i2R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fAR-2W-h8V" firstAttribute="top" secondItem="HbC-CV-i2R" secondAttribute="top" id="1Gl-2h-IUF"/>
+                            <constraint firstItem="HbC-CV-i2R" firstAttribute="bottom" secondItem="fAR-2W-h8V" secondAttribute="bottom" id="Rv8-bi-aPD"/>
+                            <constraint firstItem="nas-bj-mPL" firstAttribute="centerY" secondItem="Fso-iD-J50" secondAttribute="centerY" id="Sfp-dE-95Q"/>
+                            <constraint firstItem="nas-bj-mPL" firstAttribute="centerX" secondItem="Fso-iD-J50" secondAttribute="centerX" id="TB7-fq-wz4"/>
+                            <constraint firstItem="HbC-CV-i2R" firstAttribute="trailing" secondItem="fAR-2W-h8V" secondAttribute="trailing" id="TLn-fc-W6t"/>
+                            <constraint firstItem="fAR-2W-h8V" firstAttribute="leading" secondItem="HbC-CV-i2R" secondAttribute="leading" id="W8H-ec-HO3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="nas-bj-mPL" id="OLf-Yd-bQH"/>
+                        <outlet property="tableView" destination="fAR-2W-h8V" id="cr7-2p-Vfl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ayg-fg-vgJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2109" y="123"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

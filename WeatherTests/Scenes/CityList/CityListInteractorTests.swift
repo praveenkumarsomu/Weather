@@ -32,7 +32,7 @@ class CityListMockPresenter: CityListPresentationLogic {
 		presenterReceivedCallFromInteractor = true
 	}
 }
-class CityListMockWorker: CityListWorker {
+class CityListMockWorker: WeatherDetailsWorker {
 	var fetchCitiesCalled: Bool = false
 	override func fetchCityList() async throws -> Data {
 		fetchCitiesCalled = true

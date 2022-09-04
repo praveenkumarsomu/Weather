@@ -13,9 +13,10 @@ struct Constants {
 	let cityListCell = "cityListCell"
 	let contactUsTextFieldCell = String(describing: ContactUsInputTableViewCell.self)
 	let contactUsButtonCell = String(describing: ContactUsButtonTableViewCell.self)
-	
+	let weatherDetailsCell = String(describing: WeatherDetailsTableViewCell.self)
 	
 	//MARK: Misc
 	let cityListFileName = "cities"
-	let cityListFileExtension = "json"
+	let weatherDetails = "weatherDetails"
+	let json = "json"
 }

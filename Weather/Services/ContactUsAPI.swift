@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Placeholder class for real API implementation in future
+/// Placeholder class for real API implementation for future.
 class ContactUsAPI: ContactUsStoreProtocol {
 	func submitContactUsDetails(_ request: ContactUsModel.Request) async throws -> Data {
 		return Data()

@@ -14,7 +14,7 @@ protocol CityListDisplayLogic: AnyObject {
 	func displayCityList(_ cities: CityListModel.ViewModel)
 	/// In case if `getCityList` API fails presenter will call this to inform view controller about it, Normally view controller will display alert message or error screen to user.
 	/// - Parameter error: Error type which gives more context about why API is failed.
-	func displayErrorWhileFetchingCityList(_ error: CityListModel.CityListError)
+	func displayErrorWhileFetchingCityList(_ error: WeatherAPIError)
 }
 /// This view controller is initial view controller of the app and displays the List of the cities
 /// You can see weather information of the city by selecting the city from the list (Table view)
@@ -70,7 +70,7 @@ extension CityListViewController: CityListDisplayLogic {
 		self.displayedCities = response
 		tableView.reloadData()
 	}
-	func displayErrorWhileFetchingCityList(_ error: CityListModel.CityListError) {
+	func displayErrorWhileFetchingCityList(_ error: WeatherAPIError) {
 		showAlertWithSingleButtonAction(title: constants.error, message: constants.cityListAPIFailureMessage, actionTitle: constants.okayButtonTitle, action: nil)
 	}
 }
@@ -93,6 +93,15 @@ extension CityListViewController: UITableViewDataSource {
 //MARK: Table view delegate
 extension CityListViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
+		tableView.deselectRow(at: indexPath, animated: false)
+		guard let selectedCity = displayedCities.cities[safe: indexPath.row] else {
+			showAlertWithSingleButtonAction(title: constants.error, message: constants.selectedCityIsNotFound, actionTitle: constants.okayButtonTitle, action: nil)
+			return
+		}
+		do {
+			try router.displayWeatherDetails(for: selectedCity)
+		} catch {
+			showAlertWithSingleButtonAction(title: constants.error, message: constants.selectedCityIsNotFound, actionTitle: constants.okayButtonTitle, action: nil)
+		}
 	}
 }

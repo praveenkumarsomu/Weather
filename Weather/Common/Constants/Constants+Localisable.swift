@@ -16,6 +16,14 @@ extension Constants {
 	var mobileNumber: String { "Mobile Number" }
 	var email: String { "Email" }
 	var name: String { "Enter your name" }
+	var degree: String { "Degree" }
+	var chooseDegree: String { "Choose Degree" }
+	var celsius: String { "Celsius" }
+	var fahrenheit: String { "Fahrenheit" }
+	var cancel: String { "Cancel" }
+	var itFeelsLike: String { "It feels like" }
+	var currentTemparatureIs: String { "Current temparature is" }
+	var weatherCondition: String { "Weather Condition is" }
 	//MARK: Error Messages
 	var error: String { "Error" }
 	var okayButtonTitle: String { "OK" }
@@ -25,5 +33,7 @@ extension Constants {
 	var invalidEmail: String { "Invalid email address." }
 	var invalidName: String  {"Invalid name." }
 	var invalidMobileNumber: String { "Invalid mobile number." }
+	var selectedCityIsNotFound: String { "Selected city not found." }
+	var weatherDetailsNotFound: String { "Weather details for selected city not found, please try after some time." } 
 	var success: String { "Success" }
 }

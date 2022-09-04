@@ -8,9 +8,6 @@
 import Foundation
 
 enum CityListModel {
-	enum CityListError: Error {
-		case failedToFetchCities
-	}
 	struct Request { }
 	struct Response: Codable {
 		let cities: [City]
