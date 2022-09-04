@@ -49,7 +49,7 @@ class WeatherDetailsViewController: UIViewController {
 	// MARK: Private functions
 	private func getWeatherDetails() {
 		let request = WeatherDetailsModel.Request(city: city, degree: degree.rawValue)
-		activityIndicator.startAnimating()
+		activityIndicator?.startAnimating()
 		Task.detached { [weak self] in
 			guard let self = self else { return }
 			try await self.interactor.getWeatherDetails(request)

@@ -29,7 +29,7 @@ class CityListPresenterTests: XCTestCase {
 		let mockController = CityListMockController()
 		presenter.view = mockController
 		let expection = expectation(description: "Presenter async update")
-		presenter.presentCityList(.failure(.failedToFetchCities))
+		presenter.presentCityList(.failure(.cityListNotFound))
 		mockController.callBackTriggerCompletion = {
 			XCTAssertTrue(mockController.diaplayLogicCalled, "In case of error presenter should inform controller to display error.")
 			expection.fulfill()
@@ -63,7 +63,7 @@ class CityListMockController: CityListDisplayLogic {
 		displayedCities = cities
 		callBackTriggerCompletion?()
 	}
-	func displayErrorWhileFetchingCityList(_ error: CityListModel.CityListError) {
+	func displayErrorWhileFetchingCityList(_ error: WeatherAPIError) {
 		diaplayLogicCalled = true
 		callBackTriggerCompletion?()
 	}

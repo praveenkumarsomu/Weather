@@ -109,7 +109,7 @@ class ContactUsMockPresenter: ContactUsPresentationLogic {
 	var interactorCalledPresenter = false
 	var submitButtonStateCalled = false
 	var presentationCallback: (() -> Void)?
-	func presentContactUsResult(_ result: Result<ContactUsModel.Response, ContactUsModel.ContactUsError>) {
+	func presentContactUsResult(_ result: Result<ContactUsModel.Response, ContactUsError>) {
 		interactorCalledPresenter = true
 		presentationCallback?()
 	}
