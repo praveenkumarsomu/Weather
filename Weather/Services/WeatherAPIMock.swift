@@ -8,15 +8,15 @@
 import Foundation
 
 /// Fetch list of cities from the local json file
-class CityStaticListAPI: CityListStoreProtocol {
-	enum DataError: Error {
+class WeatherAPIMock: WeatherStoreProtocol {
+	enum WeatherAPIError: Error {
 		case fileNotFound
 	}
 	
-	func fetchCityList() throws -> Data {
+	func fetchCityList() async throws -> Data {
 		let constants = Constants()
 		guard let filePath = Bundle.main.path(forResource: constants.cityListFileName, ofType: constants.cityListFileExtension) else {
-			throw DataError.fileNotFound
+			throw WeatherAPIError.fileNotFound
 		}
 		let url = URL(fileURLWithPath: filePath)
 		let content = try Data(contentsOf: url, options: .alwaysMapped)

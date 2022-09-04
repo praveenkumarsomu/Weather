@@ -11,12 +11,11 @@ struct Constants {
 	//MARK: User interface
 	//MARK: Table view cell identifiers
 	let cityListCell = "cityListCell"
+	let contactUsTextFieldCell = String(describing: ContactUsInputTableViewCell.self)
+	let contactUsButtonCell = String(describing: ContactUsButtonTableViewCell.self)
+	
+	
 	//MARK: Misc
 	let cityListFileName = "cities"
 	let cityListFileExtension = "json"
-	//MARK: Error Messages
-	let error = "Error"
-	let okayButtonTitle = "OK"
-	let cancelButtonTitle = "Cancel"
-	let cityListAPIFailureMessage = "Failed to load cities list, please try again later."
 }

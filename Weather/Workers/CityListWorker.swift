@@ -7,19 +7,21 @@
 
 import Foundation
 
-protocol CityListStoreProtocol {
-	func fetchCityList() throws -> Data
+protocol WeatherStoreProtocol {
+	func fetchCityList() async throws -> Data
 }
-
+enum WeatherAPIError: Error {
+	case fileNotFound
+}
 class CityListWorker {
-	var citiesStore: CityListStoreProtocol
-	init(citiesStore: CityListStoreProtocol) {
+	var citiesStore: WeatherStoreProtocol
+	init(citiesStore: WeatherStoreProtocol) {
 		self.citiesStore = citiesStore
 	}
 	/// Fetch data from the API
 	/// As of now it just call function but in future if we want to extend functionality like off line support, etc we see more code from this function.
 	/// - Returns: Returns city list data
-	func fetchCityList() throws -> Data {
-		return try citiesStore.fetchCityList()
+	func fetchCityList() async throws -> Data {
+		return try await citiesStore.fetchCityList()
 	}
 }

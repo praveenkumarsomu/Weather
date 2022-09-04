@@ -21,8 +21,13 @@ protocol CityListDisplayLogic: AnyObject {
 ///
 class CityListViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
-	var interactor: CityListViewBusinessLogic?
-	var displayedCities: CityListModel.ViewModel?
+	var interactor: CityListViewBusinessLogic!
+	var displayedCities: CityListModel.ViewModel!
+	var router: CityListRouterProtocol!
+	let constants = Constants()
+	private var contactUsButton: UIBarButtonItem {
+		UIBarButtonItem(title: constants.contactUs, style: .plain, target: self, action: #selector(contactUsButtonTapped))
+	}
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		configure()
@@ -40,15 +45,23 @@ class CityListViewController: UIViewController {
 	private func configure() {
 		let interactor = CityListInteractor()
 		let presenter = CityListPresenter()
+		let router = CityListRouter()
 		self.interactor = interactor
 		interactor.presenter = presenter
 		presenter.view = self
+		self.router = router
+		router.viewController = self
 	}
 	/// Perform basic UI tasks on view load like setting screen titles, etc.
 	private func configureUI() {
 		self.title = "Weather"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants().cityListCell)
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: constants.cityListCell)
+		/// Add nav bar buttions
+		navigationItem.rightBarButtonItem = contactUsButton
+	}
+	@objc private func contactUsButtonTapped() {
+		router.navigateToContactScreen()
 	}
 }
 //MARK: Presenter output
@@ -58,7 +71,7 @@ extension CityListViewController: CityListDisplayLogic {
 		tableView.reloadData()
 	}
 	func displayErrorWhileFetchingCityList(_ error: CityListModel.CityListError) {
-		
+		showAlertWithSingleButtonAction(title: constants.error, message: constants.cityListAPIFailureMessage, actionTitle: constants.okayButtonTitle, action: nil)
 	}
 }
 //MARK: Table view data source
@@ -70,7 +83,7 @@ extension CityListViewController: UITableViewDataSource {
 		return displayedCities?.cities.count ?? 0
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: Constants().cityListCell, for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: constants.cityListCell, for: indexPath)
 		cell.textLabel?.text = displayedCities?.cities[safe: indexPath.row]?.name
 		cell.accessoryType = .disclosureIndicator
 		return cell
