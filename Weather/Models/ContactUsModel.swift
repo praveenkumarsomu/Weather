@@ -47,11 +47,10 @@ enum ContactUsModel {
 			let message: String
 		}
 	}
-	/// Contact us error cases
+	/// Contact us user interface error cases.
 	enum ContactUsError: Error {
 		case invalidEmail
 		case invalidMobileNumber
 		case invalidName
-		case apiFailure
 	}
 }

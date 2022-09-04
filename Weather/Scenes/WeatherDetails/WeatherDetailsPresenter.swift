@@ -7,12 +7,18 @@
 
 import Foundation
 
+/// Weather details presentation logic
 protocol WeatherDetailsPresenterLogic {
+	/// Present the weather details API result received from interactor and display data on `WeatherDetailsViewController`.
+	/// - Parameter result: result object from interactor `WeatherDetailsInteractor`.
 	func presentWeatherDetails(_ result: Result<WeatherDetailsModel.Response, WeatherAPIError>)
 }
 extension WeatherDetailsPresenterLogic {
+	/// Convert API response model into view model.
+	/// - Parameter response: response object received from weather details API
+	/// - Returns: returns view model object.
 	func convertResponseModelIntoViewModel(_ response: WeatherDetailsModel.Response) -> WeatherDetailsModel.ViewModel {
-		let viewModel = WeatherDetailsModel.ViewModel(cityName: response.cityName, lastUpdatedLabel: response.lastUpdateTimeLabel, lastUpdatedTime: response.updateTime, weatherCondition: response.weatherCondition, temparature: response.temperature, feelsLike: response.feelsLike, temparatureUnit: response.temperatureUnit)
+		let viewModel = WeatherDetailsModel.ViewModel(lastUpdatedLabel: response.lastUpdateTimeLabel, lastUpdatedTime: response.updateTime, weatherCondition: response.weatherCondition, temparature: response.temperature, feelsLike: response.feelsLike, temparatureUnit: response.temperatureUnit)
 		return viewModel
 	}
 }

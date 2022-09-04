@@ -7,11 +7,15 @@
 
 import Foundation
 
+/// Weather details model, this enum contains Request, Response objects from the weather details API and View model to display data on `WeatherDetailsViewController`.
 enum WeatherDetailsModel {
 	struct Request {
+		/// City object which we want to fetch the whether, this data is passed to `WeatherDetailsViewController` from `CityListViewController`.
 		let city: CityListModel.ViewModel.City
+		/// User can select in which degree he want to see the weathee details. We support Celsius and fahrenheit and corresponding values for them are `c`. and `f`.
 		let degree: String
 	}
+	/// Full response object received from API call
 	struct Response: Codable {
 		let lastUpdateTimeLabel: String
 		let updateTime: String
@@ -21,8 +25,6 @@ enum WeatherDetailsModel {
 		@Temparature var temperature: String
 		@Temparature var feelsLike: String
 		let temperatureUnit, placeCode: String
-		/// This was local variable not return from API
-		var cityName: String?
 		enum CodingKeys: String, CodingKey {
 			case lastUpdateTimeLabel = "lbl_updatetime"
 			case updateTime = "updatetime"
@@ -34,14 +36,13 @@ enum WeatherDetailsModel {
 			case placeCode = "placecode"
 		}
 	}
+	/// We are getting `	temparature`  and `feelsLike` values as` String` and `Int`.  Below property wrapper resolves the coresponding value types successfully.
 	@propertyWrapper
 	struct Temparature: Codable {
-
 		var wrappedValue: String
 		init(wrappedValue: String) {
 			self.wrappedValue = wrappedValue
 		}
-
 		public init(from decoder: Decoder) throws {
 			do {
 				wrappedValue = try decoder.singleValueContainer().decode(String.self)
@@ -50,14 +51,15 @@ enum WeatherDetailsModel {
 				wrappedValue = "\(intValue)"
 			}
 		}
-
 		public func encode(to encoder: Encoder) throws {
 			var container = encoder.singleValueContainer()
 			try container.encode(wrappedValue)
 		}
 	}
+	/// View model object to display weather details on `WeatherDetailsViewController`.
 	struct ViewModel {
-		let cityName: String?
+		/// `cityName` was local variable not return from API. On the `WeatherDetailsViewController` we need to display city name which is not part of API response. This value will be assigned in controller `WeatherDetailsViewController`  while displaying API response on screen.
+		var cityName: String?
 		let lastUpdatedLabel: String
 		let lastUpdatedTime: String
 		let weatherCondition: String

@@ -7,8 +7,12 @@
 
 import UIKit
 
+/// Output from presenter
 protocol WeatherDetailsDisplayLogic: AnyObject {
+	/// Display weather details api results on controller
+	/// - Parameter viewModel: viewmodel object which contains weather details
 	func displayWeatherDetails(_ viewModel: WeatherDetailsModel.ViewModel)
+	/// In case of weather details API failure Display error message on controller
 	func displayWeatherDetailsError()
 }
 
@@ -20,7 +24,7 @@ class WeatherDetailsViewController: UIViewController {
 	let constants = Constants()
 	var interactor: WeatherDetailsBusinessLogic!
 	var city: CityListModel.ViewModel.City!
-	/// Output from the weather details API
+	/// Output from the weather details API this data is displayed on screen to user.
 	var displayedWeatherDetails: WeatherDetailsModel.ViewModel?
 	/// User can choose the in which degree type. Each time value changed will trigger api
 	var degree: DegreeType = .celsius {
@@ -32,6 +36,7 @@ class WeatherDetailsViewController: UIViewController {
 		case fahrenheit = "f"
 		case celsius = "c"
 	}
+	//MARK: View life cycle methods
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		configure()
@@ -41,6 +46,7 @@ class WeatherDetailsViewController: UIViewController {
 		configureUI()
 		getWeatherDetails()
     }
+	// MARK: Private functions
 	private func getWeatherDetails() {
 		let request = WeatherDetailsModel.Request(city: city, degree: degree.rawValue)
 		activityIndicator.startAnimating()
@@ -49,6 +55,7 @@ class WeatherDetailsViewController: UIViewController {
 			try await self.interactor.getWeatherDetails(request)
 		}
 	}
+	/// Initialise and map interactor, presenter and worker files.
 	private func configure() {
 		let dataStore = WeatherAPI()
 		let worker = WeatherDetailsWorker(weatherStore: dataStore)
@@ -58,12 +65,14 @@ class WeatherDetailsViewController: UIViewController {
 		interactor.presenter = presenter
 		presenter.view = self
 	}
+	/// Configure user interface on view didload, setting titles, configuring table views, etc.
 	private func configureUI() {
 		title = city.name
 		self.navigationController?.navigationBar.prefersLargeTitles = true
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: constants.degree, style: .plain, target: self, action: #selector(showDegreeActionSheet))
 		tableView.registerNib(cell: constants.weatherDetailsCell)
 	}
+	/// Displays action sheet to change degree from celsius to fahrenheit and vice versa.
 	@objc private func showDegreeActionSheet() {
 		let actionSheet = UIAlertController(title: "Degree", message: constants.chooseDegree, preferredStyle: .actionSheet)
 		let celsiusAction = UIAlertAction(title: constants.celsius, style: .default) { [weak self] _ in
@@ -86,6 +95,7 @@ extension WeatherDetailsViewController: WeatherDetailsDisplayLogic {
 	func displayWeatherDetails(_ viewModel: WeatherDetailsModel.ViewModel) {
 		activityIndicator.stopAnimating()
 		self.displayedWeatherDetails = viewModel
+		displayedWeatherDetails?.cityName = city.name
 		tableView.reloadData()
 	}
 	

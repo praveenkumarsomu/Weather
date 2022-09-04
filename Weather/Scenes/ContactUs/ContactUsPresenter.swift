@@ -11,7 +11,7 @@ import Foundation
 protocol ContactUsPresentationLogic {
 	/// After completing API call receive call from interactor `ContactUsInteractor` to display result in `ContactUsViewController`.
 	/// - Parameter result: This message is alert message title that will be shown on `ContactUsViewController`.
-	func presentContactUsResult(_ result: Result<ContactUsModel.Response, ContactUsModel.ContactUsError>)
+	func presentContactUsResult(_ result: Result<ContactUsModel.Response, ContactUsError>)
 	/// Update the state of the submit button
 	/// - Parameter isValidInput: Bool value if it is `true` submit button is toggled to enabled state.
 	func updateSubmitButton(isValidInput: Bool)
@@ -21,7 +21,7 @@ protocol ContactUsPresentationLogic {
 class ContactUsPresenter: ContactUsPresentationLogic {
 	var view: ContactUsDisplayLogic!
 	let constants: Constants = Constants()
-	func presentContactUsResult(_ result: Result<ContactUsModel.Response, ContactUsModel.ContactUsError>) {
+	func presentContactUsResult(_ result: Result<ContactUsModel.Response, ContactUsError>) {
 		DispatchQueue.main.async { [weak self] in
 			guard let self =  self else { return }
 			switch result {

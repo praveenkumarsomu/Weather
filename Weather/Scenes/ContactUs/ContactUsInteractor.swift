@@ -54,7 +54,7 @@ class ContactUsInteractor: ContactUsBusinessLogic {
 	func submitUserDetails(_ request: ContactUsModel.Request) async throws {
 		// TODO: In future we can implement actual API call here for now just return mock result.
 		guard let data = try? await worker.submitContactUsDetails(request), let message = String(data: data, encoding: .utf8) else {
-			return 	presenter.presentContactUsResult(.failure(.apiFailure))
+			return 	presenter.presentContactUsResult(.failure(ContactUsError.genericError))
 		}
 		let response = ContactUsModel.Response(message: message)
 		presenter.presentContactUsResult(.success(response))
