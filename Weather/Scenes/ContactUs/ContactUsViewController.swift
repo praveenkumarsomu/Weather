@@ -123,7 +123,7 @@ class ContactUsViewController: UIViewController {
 		}
 		let request = ContactUsModel.Request(name: name, email: email, mobileNumber: mobile)
 		Task.detached { [weak self] in
-			try await self?.interactor.submitUserDetails(request)
+			await self?.interactor.submitUserDetails(request)
 		}
 	}
 }

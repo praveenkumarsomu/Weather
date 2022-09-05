@@ -11,7 +11,7 @@ import Foundation
 protocol WeatherDetailsBusinessLogic {
 	/// Get weather details of the selected city.
 	/// - Parameter request: selected city object.
-	func getWeatherDetails(_ request: WeatherDetailsModel.Request) async throws
+	func getWeatherDetails(_ request: WeatherDetailsModel.Request) async
 }
 
 class WeatherDetailsInteractor: WeatherDetailsBusinessLogic {
@@ -20,9 +20,9 @@ class WeatherDetailsInteractor: WeatherDetailsBusinessLogic {
 	init(_ worker: WeatherDetailsWorker) {
 		self.worker = worker
 	}
-	func getWeatherDetails(_ request: WeatherDetailsModel.Request) async throws {
-		let weatherDetailsData = try await worker.getWeatherDetails(for: request.city.code, degree: request.degree)
+	func getWeatherDetails(_ request: WeatherDetailsModel.Request) async {
 		do {
+			let weatherDetailsData = try await worker.getWeatherDetails(for: request.city.code, degree: request.degree)
 			let response = try JSONDecoder().decode(WeatherDetailsModel.Response.self, from: weatherDetailsData)
 			presenter.presentWeatherDetails(.success(response))
 		} catch let error where error is WeatherAPIError {

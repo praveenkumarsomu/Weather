@@ -52,7 +52,7 @@ class WeatherDetailsViewController: UIViewController {
 		activityIndicator?.startAnimating()
 		Task.detached { [weak self] in
 			guard let self = self else { return }
-			try await self.interactor.getWeatherDetails(request)
+			await self.interactor.getWeatherDetails(request)
 		}
 	}
 	/// Initialise and map interactor, presenter and worker files.

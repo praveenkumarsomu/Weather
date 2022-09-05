@@ -11,7 +11,7 @@ import Foundation
 protocol ContactUsBusinessLogic {
 	/// After entering valid data and clicking button submit user details to API SMTP server. As of now no real API call will be implemented.
 	/// - Parameter request: User input from contact us page.
-	func submitUserDetails(_ request: ContactUsModel.Request) async throws
+	func submitUserDetails(_ request: ContactUsModel.Request) async
 	/// Check for submit button state and tell presenter about it.
 	func checkForSubmitButtonState(_ interfaceModelList: [ContactUsModel.ViewModel.UserInterfaceModel])
 }
@@ -51,7 +51,7 @@ class ContactUsInteractor: ContactUsBusinessLogic {
 	init(_ worker: ContactUsWorker) {
 		self.worker = worker
 	}
-	func submitUserDetails(_ request: ContactUsModel.Request) async throws {
+	func submitUserDetails(_ request: ContactUsModel.Request) async {
 		// TODO: In future we can implement actual API call here for now just return mock result.
 		guard let data = try? await worker.submitContactUsDetails(request), let message = String(data: data, encoding: .utf8) else {
 			return 	presenter.presentContactUsResult(.failure(ContactUsError.genericError))
