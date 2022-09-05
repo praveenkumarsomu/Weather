@@ -16,7 +16,8 @@ struct Constants {
 	let weatherDetailsCell = String(describing: WeatherDetailsTableViewCell.self)
 	
 	//MARK: Misc
-	let cityListFileName = "cities"
+	let cityList = "cities"
 	let weatherDetails = "weatherDetails"
+	let galleryList = "gallery"
 	let json = "json"
 }

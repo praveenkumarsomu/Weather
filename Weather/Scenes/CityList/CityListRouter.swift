@@ -29,7 +29,8 @@ class CityListRouter: CityListRouterProtocol {
 		viewController?.navigationController?.pushViewController(contactUsVC, animated: true)
 	}
 	func navigateToGalleryScreen() {
-		
+		let galleryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: GalleryViewController.self))
+		viewController?.navigationController?.pushViewController(galleryVC, animated: true)
 	}
 	func displayWeatherDetails(for city: CityListModel.ViewModel.City) throws {
 		guard let weatherDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: WeatherDetailsViewController.self)) as? WeatherDetailsViewController else {

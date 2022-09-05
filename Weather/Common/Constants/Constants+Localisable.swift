@@ -9,7 +9,8 @@ import Foundation
 
 /// Declare all the localisable strings in one file it will be easy to implement localisation in future.
 extension Constants {
-	//MARK: Button and text field titles and placeholders
+	//MARK: Button, Label,text field and alert content
+	var weather: String { "Weather" } 
 	var contactUs: String { "Contact Us" }
 	var gallery: String { "Gallery" }
 	var submit: String { "Submit" }
@@ -34,6 +35,8 @@ extension Constants {
 	var invalidName: String  {"Invalid name." }
 	var invalidMobileNumber: String { "Invalid mobile number." }
 	var selectedCityIsNotFound: String { "Selected city not found." }
-	var weatherDetailsNotFound: String { "Weather details for selected city not found, please try after some time." } 
+	var weatherDetailsNotFound: String { "Weather details for selected city not found, please try after some time." }
+	var unableToFetchImages: String { "Unable to fetch images, please try again later." }
+	var unableToDisplayFullImage: String { "Unable to load full size image." }
 	var success: String { "Success" }
 }

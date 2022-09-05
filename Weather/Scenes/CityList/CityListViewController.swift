@@ -20,14 +20,15 @@ protocol CityListDisplayLogic: AnyObject {
 /// You can see weather information of the city by selecting the city from the list (Table view)
 ///
 class CityListViewController: UIViewController {
+	//MARK: Outlets
 	@IBOutlet weak var tableView: UITableView!
+	//MARK: Instance variables
 	var interactor: CityListViewBusinessLogic!
 	var displayedCities: CityListModel.ViewModel!
 	var router: CityListRouterProtocol!
 	let constants = Constants()
-	private var contactUsButton: UIBarButtonItem {
-		UIBarButtonItem(title: constants.contactUs, style: .plain, target: self, action: #selector(contactUsButtonTapped))
-	}
+	
+	//MARK: View life cycle methods
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		configure()
@@ -41,6 +42,7 @@ class CityListViewController: UIViewController {
 			await self?.interactor?.getCityList(request)
 		}
 	}
+	//MARK: Private configuration
 	/// This function initialises and resolves the mapping between View controller -> Interactor -> Presenter
 	private func configure() {
 		let interactor = CityListInteractor()
@@ -54,14 +56,19 @@ class CityListViewController: UIViewController {
 	}
 	/// Perform basic UI tasks on view load like setting screen titles, etc.
 	private func configureUI() {
-		self.title = "Weather"
+		self.title = constants.weather
 		self.navigationController?.navigationBar.prefersLargeTitles = true
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: constants.cityListCell)
 		/// Add nav bar buttions
-		navigationItem.rightBarButtonItem = contactUsButton
+		let contactUsButton = UIBarButtonItem(title: constants.contactUs, style: .plain, target: self, action: #selector(contactUsButtonTapped))
+		let galleryButton = UIBarButtonItem(title: constants.gallery, style: .plain, target: self, action: #selector(galleryButtonTapped))
+		navigationItem.rightBarButtonItems = [contactUsButton, galleryButton]
 	}
 	@objc private func contactUsButtonTapped() {
 		router.navigateToContactScreen()
+	}
+	@objc private func galleryButtonTapped() {
+		router.navigateToGalleryScreen()
 	}
 }
 //MARK: Presenter output

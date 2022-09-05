@@ -12,7 +12,7 @@ class WeatherLocalAPI: WeatherStoreProtocol {
 	
 	func fetchCityList() async throws -> Data {
 		let constants = Constants()
-		guard let filePath = Bundle.main.path(forResource: constants.cityListFileName, ofType: constants.json) else {
+		guard let filePath = Bundle.main.path(forResource: constants.cityList, ofType: constants.json) else {
 			throw WeatherAPIError.fileNotFound
 		}
 		let url = URL(fileURLWithPath: filePath)
