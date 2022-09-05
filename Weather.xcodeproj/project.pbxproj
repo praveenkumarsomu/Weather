@@ -58,6 +58,12 @@
 		7F8258FF28C5C9E100558B6B /* GalleryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8258FE28C5C9E100558B6B /* GalleryAPI.swift */; };
 		7F82590128C5CCB900558B6B /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82590028C5CCB900558B6B /* GalleryCollectionViewCell.swift */; };
 		7F82590528C5DA9E00558B6B /* DisplayImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82590428C5DA9E00558B6B /* DisplayImageViewController.swift */; };
+		7F82591028C5E89300558B6B /* GalleryControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82590F28C5E89300558B6B /* GalleryControllerTests.swift */; };
+		7F82591228C5E8A200558B6B /* GalleryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82591128C5E8A200558B6B /* GalleryInteractorTests.swift */; };
+		7F82591428C5E8AE00558B6B /* GalleryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82591328C5E8AE00558B6B /* GalleryPresenterTests.swift */; };
+		7F82591928C5FA0F00558B6B /* ContactUsLocalAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82591828C5FA0F00558B6B /* ContactUsLocalAPITests.swift */; };
+		7F82591C28C6001300558B6B /* GalleryLocalAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82591B28C6001300558B6B /* GalleryLocalAPITests.swift */; };
+		7F82591E28C6020900558B6B /* WeatherLocalAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82591D28C6020900558B6B /* WeatherLocalAPITests.swift */; };
 		7FA2C05928C316FC004A0205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA2C05828C316FC004A0205 /* AppDelegate.swift */; };
 		7FA2C05B28C316FC004A0205 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA2C05A28C316FC004A0205 /* SceneDelegate.swift */; };
 		7FA2C05D28C316FC004A0205 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA2C05C28C316FC004A0205 /* CityListViewController.swift */; };
@@ -138,6 +144,12 @@
 		7F8258FE28C5C9E100558B6B /* GalleryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAPI.swift; sourceTree = "<group>"; };
 		7F82590028C5CCB900558B6B /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F82590428C5DA9E00558B6B /* DisplayImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayImageViewController.swift; sourceTree = "<group>"; };
+		7F82590F28C5E89300558B6B /* GalleryControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryControllerTests.swift; sourceTree = "<group>"; };
+		7F82591128C5E8A200558B6B /* GalleryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInteractorTests.swift; sourceTree = "<group>"; };
+		7F82591328C5E8AE00558B6B /* GalleryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresenterTests.swift; sourceTree = "<group>"; };
+		7F82591828C5FA0F00558B6B /* ContactUsLocalAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsLocalAPITests.swift; sourceTree = "<group>"; };
+		7F82591B28C6001300558B6B /* GalleryLocalAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryLocalAPITests.swift; sourceTree = "<group>"; };
+		7F82591D28C6020900558B6B /* WeatherLocalAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocalAPITests.swift; sourceTree = "<group>"; };
 		7FA2C05528C316FC004A0205 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA2C05828C316FC004A0205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FA2C05A28C316FC004A0205 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,10 +193,8 @@
 		7F59E63528C3403E004B3768 /* CityList */ = {
 			isa = PBXGroup;
 			children = (
-				7FA2C05C28C316FC004A0205 /* CityListViewController.swift */,
+				7F82590928C5E26B00558B6B /* VIP */,
 				7F59E63D28C346A7004B3768 /* CityListRouter.swift */,
-				7F59E62928C319FC004B3768 /* CityListInteractor.swift */,
-				7F59E62B28C31A69004B3768 /* CityListPresenter.swift */,
 			);
 			path = CityList;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 				7F59E64028C34D21004B3768 /* CityList */,
 				7F59E66D28C4AC8B004B3768 /* ContactUs */,
 				7F59E68B28C52684004B3768 /* WeatherDetails */,
+				7F82591728C5E8DE00558B6B /* GalleryList */,
+				7F82591A28C5FFE400558B6B /* Services */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -231,12 +243,8 @@
 		7F59E64D28C4463B004B3768 /* ContactUs */ = {
 			isa = PBXGroup;
 			children = (
-				7F59E64B28C44637004B3768 /* ContactUsViewController.swift */,
-				7F59E65428C44D2C004B3768 /* ContactUsInputTableViewCell.swift */,
-				7F59E65628C44D3B004B3768 /* ContactUsButtonTableViewCell.swift */,
-				7F59E66928C49D9B004B3768 /* ContactUsTableFooterView.swift */,
-				7F59E64E28C44657004B3768 /* ContactUsInteractor.swift */,
-				7F59E65028C44661004B3768 /* ContactUsPresenter.swift */,
+				7F82590B28C5E29600558B6B /* VIP */,
+				7F82590A28C5E27800558B6B /* TableViews */,
 			);
 			path = ContactUs;
 			sourceTree = "<group>";
@@ -264,11 +272,8 @@
 		7F59E67428C4DEE8004B3768 /* WeatherDetails */ = {
 			isa = PBXGroup;
 			children = (
-				7F59E67228C4DEE3004B3768 /* WeatherDetailsViewController.swift */,
-				7F59E68528C50020004B3768 /* WeatherDetailsTableViewCell.swift */,
-				7F59E68628C50020004B3768 /* WeatherDetailsTableViewCell.xib */,
-				7F59E67528C4DF04004B3768 /* WeatherDetailsInteractor.swift */,
-				7F59E67728C4DF0F004B3768 /* WeatherDetailsPresenter.swift */,
+				7F82590828C5E25300558B6B /* VIP */,
+				7F82590628C5E23600558B6B /* TableCell */,
 			);
 			path = WeatherDetails;
 			sourceTree = "<group>";
@@ -296,24 +301,116 @@
 		7F8258F428C5B9A400558B6B /* GalleryList */ = {
 			isa = PBXGroup;
 			children = (
-				7F8258EC28C5B95300558B6B /* GalleryViewController.swift */,
-				7F82590428C5DA9E00558B6B /* DisplayImageViewController.swift */,
-				7F82590028C5CCB900558B6B /* GalleryCollectionViewCell.swift */,
-				7F8258EE28C5B98600558B6B /* GalleryInteractor.swift */,
-				7F8258F028C5B99000558B6B /* GalleryPresenter.swift */,
+				7F82590C28C5E2AD00558B6B /* VIP */,
+				7F82590D28C5E2BC00558B6B /* CollectionCell */,
 				7F8258F228C5B99C00558B6B /* GalleryRouter.swift */,
 			);
 			path = GalleryList;
 			sourceTree = "<group>";
 		};
-		7F8258FD28C5C9C700558B6B /* MockAPI */ = {
+		7F8258FD28C5C9C700558B6B /* LocalAPI */ = {
 			isa = PBXGroup;
 			children = (
 				7F59E62F28C31C77004B3768 /* WeatherLocalAPI.swift */,
 				7F59E65C28C45480004B3768 /* ContactUsLocalAPI.swift */,
 				7F8258F928C5C4F500558B6B /* GalleryLocalAPI.swift */,
 			);
-			path = MockAPI;
+			path = LocalAPI;
+			sourceTree = "<group>";
+		};
+		7F82590628C5E23600558B6B /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F59E68528C50020004B3768 /* WeatherDetailsTableViewCell.swift */,
+				7F59E68628C50020004B3768 /* WeatherDetailsTableViewCell.xib */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		7F82590828C5E25300558B6B /* VIP */ = {
+			isa = PBXGroup;
+			children = (
+				7F59E67228C4DEE3004B3768 /* WeatherDetailsViewController.swift */,
+				7F59E67528C4DF04004B3768 /* WeatherDetailsInteractor.swift */,
+				7F59E67728C4DF0F004B3768 /* WeatherDetailsPresenter.swift */,
+			);
+			path = VIP;
+			sourceTree = "<group>";
+		};
+		7F82590928C5E26B00558B6B /* VIP */ = {
+			isa = PBXGroup;
+			children = (
+				7FA2C05C28C316FC004A0205 /* CityListViewController.swift */,
+				7F59E62928C319FC004B3768 /* CityListInteractor.swift */,
+				7F59E62B28C31A69004B3768 /* CityListPresenter.swift */,
+			);
+			path = VIP;
+			sourceTree = "<group>";
+		};
+		7F82590A28C5E27800558B6B /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				7F59E65428C44D2C004B3768 /* ContactUsInputTableViewCell.swift */,
+				7F59E65628C44D3B004B3768 /* ContactUsButtonTableViewCell.swift */,
+				7F59E66928C49D9B004B3768 /* ContactUsTableFooterView.swift */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
+		7F82590B28C5E29600558B6B /* VIP */ = {
+			isa = PBXGroup;
+			children = (
+				7F59E64B28C44637004B3768 /* ContactUsViewController.swift */,
+				7F59E64E28C44657004B3768 /* ContactUsInteractor.swift */,
+				7F59E65028C44661004B3768 /* ContactUsPresenter.swift */,
+			);
+			path = VIP;
+			sourceTree = "<group>";
+		};
+		7F82590C28C5E2AD00558B6B /* VIP */ = {
+			isa = PBXGroup;
+			children = (
+				7F8258EC28C5B95300558B6B /* GalleryViewController.swift */,
+				7F8258EE28C5B98600558B6B /* GalleryInteractor.swift */,
+				7F8258F028C5B99000558B6B /* GalleryPresenter.swift */,
+			);
+			path = VIP;
+			sourceTree = "<group>";
+		};
+		7F82590D28C5E2BC00558B6B /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F82590028C5CCB900558B6B /* GalleryCollectionViewCell.swift */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		7F82590E28C5E2D300558B6B /* DisplayFullImage */ = {
+			isa = PBXGroup;
+			children = (
+				7F82590428C5DA9E00558B6B /* DisplayImageViewController.swift */,
+			);
+			path = DisplayFullImage;
+			sourceTree = "<group>";
+		};
+		7F82591728C5E8DE00558B6B /* GalleryList */ = {
+			isa = PBXGroup;
+			children = (
+				7F82590F28C5E89300558B6B /* GalleryControllerTests.swift */,
+				7F82591128C5E8A200558B6B /* GalleryInteractorTests.swift */,
+				7F82591328C5E8AE00558B6B /* GalleryPresenterTests.swift */,
+			);
+			path = GalleryList;
+			sourceTree = "<group>";
+		};
+		7F82591A28C5FFE400558B6B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7F82591828C5FA0F00558B6B /* ContactUsLocalAPITests.swift */,
+				7F82591B28C6001300558B6B /* GalleryLocalAPITests.swift */,
+				7F82591D28C6020900558B6B /* WeatherLocalAPITests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7FA2C04C28C316FC004A0205 = {
@@ -379,6 +476,7 @@
 				7F59E67428C4DEE8004B3768 /* WeatherDetails */,
 				7F59E64D28C4463B004B3768 /* ContactUs */,
 				7F8258F428C5B9A400558B6B /* GalleryList */,
+				7F82590E28C5E2D300558B6B /* DisplayFullImage */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -397,7 +495,7 @@
 		7FA2C08A28C317EA004A0205 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				7F8258FD28C5C9C700558B6B /* MockAPI */,
+				7F8258FD28C5C9C700558B6B /* LocalAPI */,
 				7F59E65A28C453A2004B3768 /* WeatherAPI.swift */,
 				7F59E65E28C45B07004B3768 /* ContactUsAPI.swift */,
 				7F8258FE28C5C9E100558B6B /* GalleryAPI.swift */,
@@ -601,12 +699,18 @@
 			files = (
 				7F59E68F28C52C79004B3768 /* WeatherDetailsPresenterTests.swift in Sources */,
 				7F59E67128C4CEEB004B3768 /* ContactUsPresenterTests.swift in Sources */,
+				7F82591428C5E8AE00558B6B /* GalleryPresenterTests.swift in Sources */,
 				7F59E66C28C4AC80004B3768 /* ContactUsViewControllerTests.swift in Sources */,
 				7F59E64828C35C62004B3768 /* CityListInteractorTests.swift in Sources */,
+				7F82591C28C6001300558B6B /* GalleryLocalAPITests.swift in Sources */,
 				7F59E68A28C51A5B004B3768 /* WeatherDetailsControllerTests.swift in Sources */,
+				7F82591028C5E89300558B6B /* GalleryControllerTests.swift in Sources */,
+				7F82591928C5FA0F00558B6B /* ContactUsLocalAPITests.swift in Sources */,
 				7FA2C07028C316FD004A0205 /* WeatherTests.swift in Sources */,
 				7F59E68D28C526D7004B3768 /* WeatherDetailsInteractorTests.swift in Sources */,
 				7F59E64628C358E5004B3768 /* CityListControllerTests.swift in Sources */,
+				7F82591228C5E8A200558B6B /* GalleryInteractorTests.swift in Sources */,
+				7F82591E28C6020900558B6B /* WeatherLocalAPITests.swift in Sources */,
 				7F59E64A28C364C4004B3768 /* CityListPresenterTests.swift in Sources */,
 				7F59E66F28C4BDAE004B3768 /* ContactUsInteractorTests.swift in Sources */,
 			);

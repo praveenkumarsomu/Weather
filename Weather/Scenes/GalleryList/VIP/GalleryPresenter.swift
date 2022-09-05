@@ -7,10 +7,16 @@
 
 import Foundation
 
+/// Gallery presentation logic.
 protocol GalleryPresentationLogic {
+	/// Present response from interactor to `GalleryViewController`.
+	/// - Parameter result: response object
 	func presentGalleryImages(_ result: Result<GalleryModel.Response, GalleryAPIError>)
 }
 extension GalleryPresentationLogic {
+	/// Convert response object into view model
+	/// - Parameter response: response object
+	/// - Returns: view model object
 	func convertResponseToViewModel(_ response: GalleryModel.Response) -> GalleryModel.ViewModel {
 		let listOfImageNames: [String] = response.images.map { imageObject in
 			return imageObject.name
@@ -19,7 +25,9 @@ extension GalleryPresentationLogic {
 	}
 }
 
+/// Gallery list presenter implementation.
 class GalleryPresenter: GalleryPresentationLogic {
+	/// `GalleryViewController` implements `GalleryDisplayLogic` protocol to consume presenter output.
 	var view: GalleryDisplayLogic!
 	func presentGalleryImages(_ result: Result<GalleryModel.Response, GalleryAPIError>) {
 		DispatchQueue.main.async { [weak self] in

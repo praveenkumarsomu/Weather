@@ -80,53 +80,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "28414357-EFF7-46C1-A7BE-D81B785BD428"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherTests/Scenes/WeatherDetails/WeatherDetailsInteractorTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "presentWeatherDetails(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "28414357-EFF7-46C1-A7BE-D81B785BD428 - f30014ee6262522"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherTests.WeatherDetailsMockPresenter.presentWeatherDetails(Swift.Result&lt;Weather.WeatherDetailsModel.Response, Weather.WeatherAPIError&gt;) -&gt; ()"
-                  moduleName = "WeatherTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/praveenkumarsomu/Desktop/Weather/WeatherTests/Scenes/WeatherDetails/WeatherDetailsInteractorTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "28414357-EFF7-46C1-A7BE-D81B785BD428 - f30014ee626264d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherTests.WeatherDetailsMockPresenter.presentWeatherDetails(Swift.Result&lt;Weather.WeatherDetailsModel.Response, Weather.WeatherAPIError&gt;) -&gt; ()"
-                  moduleName = "WeatherTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/praveenkumarsomu/Desktop/Weather/WeatherTests/Scenes/WeatherDetails/WeatherDetailsInteractorTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -224,7 +224,7 @@ class ContactUsMockInteractor: ContactUsBusinessLogic {
 	var formSubmmissioncalled = false
 	var checkForSubmitButtonStateCalled = false
 	var submissionCallBack: (() -> Void)?
-	func submitUserDetails(_ request: ContactUsModel.Request) async throws {
+	func submitUserDetails(_ request: ContactUsModel.Request) async {
 		formSubmmissioncalled = true
 		submissionCallBack?()
 	}

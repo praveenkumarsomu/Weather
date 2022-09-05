@@ -19,7 +19,7 @@ enum GalleryModel {
 		}
 	}
 	/// View model to display imgaes on `GalleryViewController`.
-	struct ViewModel {
+	struct ViewModel: Equatable {
 		let images: [String]
 	}
 }

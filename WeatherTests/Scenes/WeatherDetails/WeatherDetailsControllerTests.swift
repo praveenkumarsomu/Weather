@@ -103,7 +103,7 @@ class WeatherDetailsMockInteractor: WeatherDetailsBusinessLogic {
 	var interactorCalled = false
 	var interactorCallback: (() -> Void)?
 	var request: WeatherDetailsModel.Request?
-	func getWeatherDetails(_ request: WeatherDetailsModel.Request) async throws {
+	func getWeatherDetails(_ request: WeatherDetailsModel.Request) async {
 		interactorCalled = true
 		self.request = request
 		interactorCallback?()

@@ -22,23 +22,32 @@ class ContactUsPresenterTests: XCTestCase {
 		// Assign
 		let mockDisplayLogic = ContactUsMockController()
 		presenter.view = mockDisplayLogic
-		let model = ContactUsModel.ViewModel.DataModel(message: "Success")
+		let response = ContactUsModel.Response(message: "Success")
+		let model = ContactUsModel.ViewModel.DataModel(message: response.message)
 		// Act
-		presenter.view.displaySuccessMessage(model)
-		// Assert
-		XCTAssertTrue(mockDisplayLogic.successMethodCalled, "Presenter should call controller on submit form success")
-		XCTAssertEqual(mockDisplayLogic.model, model, "Presenter must pass view model to view controller after finishing API")
+		presenter.presentContactUsResult(.success(response))
+		let expectation = expectation(description: "Presenter to view call back")
+		mockDisplayLogic.callBack = {
+			// Assert
+			XCTAssertTrue(mockDisplayLogic.successMethodCalled, "Presenter should call controller on submit form success")
+			XCTAssertEqual(mockDisplayLogic.model, model, "Presenter must pass view model to view controller after finishing API")
+			expectation.fulfill()
+		}
+		waitForExpectations(timeout: 3.0)
 	}
 	func testPresenterShouldPostSubmitFormFailureToVC() {
 		// Assign
 		let mockDisplayLogic = ContactUsMockController()
 		presenter.view = mockDisplayLogic
-		let model = ContactUsModel.ViewModel.DataModel(message: "failure")
 		// Act
-		presenter.view.displayErrorOnAPIFailure(model)
-		// Assert
-		XCTAssertTrue(mockDisplayLogic.failureMethodCalled, "Presenter should call controller on submit form failure")
-		XCTAssertEqual(mockDisplayLogic.model, model, "Presenter must pass view model to view controller after finishing API")
+		let expectation = expectation(description: "Presenter to view call back")
+		presenter.presentContactUsResult(.failure(.genericError))
+		mockDisplayLogic.callBack = {
+			// Assert
+			XCTAssertTrue(mockDisplayLogic.failureMethodCalled, "Presenter should call controller on submit form failure")
+			expectation.fulfill()
+		}
+		waitForExpectations(timeout: 3.0)
 	}
 	func testPresenterShouldPostSubmitButtonUpdateToVC() {
 		// Assign
@@ -58,14 +67,17 @@ class ContactUsMockController: ContactUsDisplayLogic {
 	var submitButtonStateUpdateCalled = false
 	var model: ContactUsModel.ViewModel.DataModel!
 	var submitButtonState = false
+	var callBack: (() -> Void)?
 	func displaySuccessMessage(_ viewModel: ContactUsModel.ViewModel.DataModel) {
 		successMethodCalled = true
 		model = viewModel
+		callBack?()
 	}
 	
 	func displayErrorOnAPIFailure(_ viewModel: ContactUsModel.ViewModel.DataModel) {
 		failureMethodCalled = true
 		model = viewModel
+		callBack?()
 	}
 	
 	func updateSubmitButton(_ isValidInput: Bool) {

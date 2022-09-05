@@ -30,11 +30,7 @@ class WeatherDetailsInteractorTests: XCTestCase {
 		let city = CityListModel.ViewModel.City(name: "Toronto", code: "CAON0696")
 		let request = WeatherDetailsModel.Request(city: city, degree: "c")
 		// Act
-		do {
-			try await interactor.getWeatherDetails(request)
-		} catch {
-			XCTFail("Interactor failed to call worker")
-		}
+		await interactor.getWeatherDetails(request)
 		// Assert
 		XCTAssertTrue(self.worker.workerCalled, "Interactor failed to call worker")
 		XCTAssertTrue(self.presenter.presenterCalled, "Interactor failed to update presenter")

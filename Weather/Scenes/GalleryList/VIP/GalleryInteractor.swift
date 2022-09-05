@@ -25,7 +25,7 @@ class GalleryInteractor: GalleryBusinessLogic {
 			let response = try JSONDecoder().decode(GalleryModel.Response.self, from: imagesData)
 			presenter.presentGalleryImages(.success(response))
 		} catch {
-			/// As of now we doing generic error for all type of errors we can improve this in future if needed
+			/// As of now we doing generic error for all type of errors we can improve this in future when we integrate real network call.
 			presenter.presentGalleryImages(.failure(.invalidData))
 		}
 	}
